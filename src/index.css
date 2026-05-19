@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   Canon CIO Command Center - Global Styles
+   ============================================ */
+
+/* Base Layer Overrides */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Urbanist', sans-serif;
+    background-color: #0A1120;
+    color: #ffffff;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Selection styling */
+  ::selection {
+    background-color: rgba(188, 0, 45, 0.4);
+    color: #ffffff;
+  }
+
+  ::-moz-selection {
+    background-color: rgba(188, 0, 45, 0.4);
+    color: #ffffff;
+  }
+}
+
+/* ============================================
+   Custom Scrollbar Styles
+   ============================================ */
+
+/* Webkit Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 17, 32, 0.5);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) rgba(10, 17, 32, 0.5);
+}
+
+/* ============================================
+   Glass-morphism Utility Classes
+   ============================================ */
+
+@layer components {
+  .glass-panel {
+    @apply bg-glass backdrop-blur-md border border-glass rounded-xl shadow-glass;
+  }
+
+  .glass-panel-light {
+    @apply bg-glass-light backdrop-blur-sm border border-glass-light rounded-xl;
+  }
+
+  .glass-panel-heavy {
+    @apply bg-glass-heavy backdrop-blur-lg border border-glass-medium rounded-xl shadow-glass-lg;
+  }
+
+  .glass-panel-dark {
+    @apply bg-glass-dark backdrop-blur-lg border border-glass-light rounded-xl shadow-executive;
+  }
+
+  .glass-card {
+    @apply bg-card-gradient backdrop-blur-md border border-glass rounded-xl shadow-glass transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply bg-glass-medium border-glass-medium shadow-glass-lg;
+  }
+
+  /* Executive Card Styles */
+  .executive-card {
+    @apply bg-glass-dark backdrop-blur-lg border border-glass-light rounded-xl shadow-executive transition-all duration-300;
+  }
+
+  .executive-card:hover {
+    @apply shadow-executive-lg border-glass-medium;
+  }
+
+  /* Status Indicator Dots */
+  .status-dot {
+    @apply inline-block w-2 h-2 rounded-full;
+  }
+
+  .status-dot-green {
+    @apply status-dot bg-status-green shadow-[0_0_6px_rgba(16,185,129,0.5)];
+  }
+
+  .status-dot-red {
+    @apply status-dot bg-status-red shadow-[0_0_6px_rgba(239,68,68,0.5)];
+  }
+
+  .status-dot-amber {
+    @apply status-dot bg-status-amber shadow-[0_0_6px_rgba(245,158,11,0.5)];
+  }
+
+  .status-dot-blue {
+    @apply status-dot bg-status-blue shadow-[0_0_6px_rgba(59,130,246,0.5)];
+  }
+
+  /* KPI Metric Display */
+  .kpi-value {
+    @apply text-3xl font-bold tracking-tight leading-none;
+  }
+
+  .kpi-label {
+    @apply text-xs font-medium uppercase tracking-wider text-executive-300;
+  }
+
+  /* Section Headers */
+  .section-title {
+    @apply text-lg font-semibold text-white tracking-wide;
+  }
+
+  .section-subtitle {
+    @apply text-sm text-executive-300 font-normal;
+  }
+}
+
+/* ============================================
+   AI Pulse Animation Keyframes
+   ============================================ */
+
+@keyframes aiPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes aiGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.2), 0 0 10px rgba(59, 130, 246, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4), 0 0 30px rgba(59, 130, 246, 0.2);
+  }
+}
+
+@keyframes aiScanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@layer utilities {
+  .animate-ai-pulse {
+    animation: aiPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-ai-glow {
+    animation: aiGlow 3s ease-in-out infinite;
+  }
+
+  .animate-ai-scanline {
+    animation: aiScanline 2s linear infinite;
+  }
+
+  .animate-status-pulse {
+    animation: statusPulse 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  /* Text gradient utility */
+  .text-gradient-executive {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-executive-200 to-executive-400;
+  }
+
+  .text-gradient-canon {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-canon-red-light to-canon-red;
+  }
+
+  /* Backdrop utilities */
+  .backdrop-executive {
+    @apply bg-executive-gradient bg-fixed;
+  }
+}
